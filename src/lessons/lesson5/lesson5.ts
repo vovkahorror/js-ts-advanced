@@ -102,7 +102,7 @@ function myFirstConstructorFunc(this: someObjType, name: string, age: number) {
     this.greeting = someObj.greeting;
 }
 
-const newFunc = new (myFirstConstructorFunc as any)('Nastya', 29)
+const newFunc = new (myFirstConstructorFunc as any)('Nastya', 29);
 console.log(newFunc);
 
 // Task 05 есть 2 объекта One и Two. С помощью bind и метода sayHello заставьте поздороваться объект One
@@ -114,7 +114,7 @@ let Two = {
     },
 };
 
-Two.sayHello.bind(One)()
+Two.sayHello.bind(One)();
 
 // Task 06
 // создайте объект helperObj у которого есть следующие методы:
@@ -122,6 +122,22 @@ Two.sayHello.bind(One)()
 // setAge - устанавливает полученное значение в свойство age объекта
 // greeting - используется функция sayHello из Task 05
 // можно использовать @ts-ignore
+
+const helperObj = {
+    name: '',
+    age: 0,
+    changeName(newName: string) {
+        this.name = newName;
+    },
+    setAge(newAge: number) {
+        this.age = newAge;
+    },
+    greeting: Two.sayHello,
+};
+
+helperObj.changeName('Nastya');
+helperObj.setAge(29);
+helperObj.greeting();
 
 // Bind
 // 1) Дана функция sumTwoNumbers, реализовать функцию bindNumber которая принимает функцию sumTwoNumbers и число, и
